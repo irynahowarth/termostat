@@ -60,8 +60,14 @@ describe('thermostat', function(){
 
   describe('reset button changes state to 20', function(){
     it('resets the state to 20', function(){
+      thermostat.up();
       thermostat.reset();
       expect(thermostat.state).toEqual(20);
+    });
+    it('resets the color to yellow', function(){
+      for(var i = 0; i < 3; i++) {thermostat.down();}
+      thermostat.reset();
+      expect(thermostat.color).toBe('yellow')
     });
   });
 

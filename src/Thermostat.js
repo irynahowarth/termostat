@@ -27,12 +27,17 @@ function Thermostat(){
       this.maximum = 25 ;
     }
   };
-  Thermostat.prototype.reset = function(){this.state = 20;};
+  Thermostat.prototype.reset = function(){
+    this.state = 20;
+    this._colorChange();
+  };
   Thermostat.prototype._colorChange = function(){
     if(this.state < 18) {
       this.color = 'green';
     }else if(this.state > 25){
       this.color = 'red';
+    }else{
+      this.color='yellow';
     }
   };
 
