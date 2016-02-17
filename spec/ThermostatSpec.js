@@ -30,6 +30,25 @@ describe('thermostat', function(){
     });
   });
 
+  describe('thermostat has a maximum temperature', function(){
+    it('has a maximum temp of 25', function (){
+      expect(thermostat.maximum).toEqual(25);
+    });
+    it('if power save mode is off, maximum temp is 32', function(){
+      thermostat.changeMode();
+      expect(thermostat.maximum).toEqual(32);
+    });
+  });
+  
+  describe('thermostat has a power mode', function(){
+    it('the mode is on by default', function(){
+      expect(thermostat.powerOn).toBeTruthy();
+    });
+    it('the mode can be switched off', function(){
+      thermostat.changeMode();
+      expect(thermostat.powerOn).toBeFalsy();
+    });
+  });
 
 
 
