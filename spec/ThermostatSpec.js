@@ -17,17 +17,66 @@ describe('thermostat', function(){
     });
   });
 
+  describe('thermostat can decrease with down button', function(){
+    it('decreases the state', function(){
+      thermostat.down();
+      expect(thermostat.state).toEqual(19);
+    });
+  });
 
+  describe('thermostat has a minimum temperature of 10', function(){
+    it('has a minimum temperature of 10', function (){
+      expect(thermostat.minimum).toEqual(10);
+    });
+  });
 
+  describe('thermostat has a maximum temperature', function(){
+    it('has a maximum temp of 25', function (){
+      expect(thermostat.maximum).toEqual(25);
+    });
+    it('if power save mode is off, maximum temp is 32', function(){
+      thermostat.changeMode();
+      expect(thermostat.maximum).toEqual(32);
+    });
+  });
+  
+  describe('thermostat has a power mode', function(){
+    it('the mode is on by default', function(){
+      expect(thermostat.powerOn).toBeTruthy();
+    });
+    it('the mode can be switched off', function(){
+      thermostat.changeMode();
+      expect(thermostat.powerOn).toBeFalsy();
+    });
+  });
 
+  describe('reset button changes state to 20', function(){
+    it('resets the state to 20', function(){
+      thermostat.reset();
+      expect(thermostat.state).toEqual(20);
+    });
+  });
 
-
-
-
-
-
-
-
-
-
+  describe('thermostat has a color', function(){
+    it('its colour is yellow by default', function(){
+      expect(thermostat.color).toBe('yellow');
+    });
+    it('its colour is green when temp is less than 18', function(){
+      for(var i = 0; i < 3; i ++) {thermostat.down();}
+      expect(thermostat.color).toBe('green');
+    });
+    it('its colour is red when temp is over 25', function(){
+      for(var i = 0; i < 6; i ++) {thermostat.up();}
+      expect(thermostat.color).toBe('red');
+    });
+  });
 }); 
+
+
+
+
+
+
+
+
+
