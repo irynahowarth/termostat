@@ -50,16 +50,11 @@ describe('thermostat', function(){
     });
   });
 
-
-
-
-
-
-
-
-
-
-
-
+  describe('reset button changes state to 20', function(){
+    it('resets the state to 20', function(){
+      thermostat.reset();
+      expect(thermostat.state).toEqual(20);
+    });
+  });
 
 }); 

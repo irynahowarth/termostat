@@ -5,8 +5,8 @@ function Thermostat(){
   this.minimum = 10;
   this.maximum = 25;
   this.powerOn = true;}
-  Thermostat.prototype.up = function(){ return this.state ++ ;};
-  Thermostat.prototype.down = function(){ return this.state --;};
+  Thermostat.prototype.up = function(){ this.state ++ ;};
+  Thermostat.prototype.down = function(){ this.state --;};
   Thermostat.prototype.changeMode = function(){
     if(this.powerOn===true) {
       this.powerOn = false ;
@@ -16,4 +16,5 @@ function Thermostat(){
       this.maximum = 25 ;
     }
   };
+  Thermostat.prototype.reset = function(){this.state = 20;};
   
