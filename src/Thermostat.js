@@ -6,8 +6,18 @@ function Thermostat(){
   this.maximum = 25;
   this.powerOn = true;
   this.color = 'yellow';}
-  Thermostat.prototype.up = function(){ this.state ++ ; this._colorChange();};
-  Thermostat.prototype.down = function(){ this.state --; this._colorChange();};
+  Thermostat.prototype.up = function(){ 
+    if(this.state === this.maximum) {
+      return}
+    this.state ++ ; 
+    this._colorChange();
+  };
+  Thermostat.prototype.down = function(){ 
+    if(this.state === this.minimum) {
+      return}
+    this.state --; 
+    this._colorChange();
+  };
   Thermostat.prototype.changeMode = function(){
     if(this.powerOn===true) {
       this.powerOn = false ;
