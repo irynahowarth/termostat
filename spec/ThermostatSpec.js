@@ -62,23 +62,14 @@ describe('thermostat', function(){
       expect(thermostat.color).toBe('yellow');
     });
     it('its colour is green when temp is less than 18', function(){
-      thermostat.down();
-      thermostat.down();
-      thermostat.down();
+      for(var i = 0; i < 3; i ++) {thermostat.down();}
       expect(thermostat.color).toBe('green');
     });
     it('its colour is red when temp is over 25', function(){
-      thermostat.up();
-      thermostat.up();
-      thermostat.up();
-      thermostat.up();
-      thermostat.up();
-      thermostat.up();
+      for(var i = 0; i < 6; i ++) {thermostat.up();}
       expect(thermostat.color).toBe('red');
     });
   });
-    
-
 }); 
 
 
