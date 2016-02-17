@@ -28,11 +28,19 @@ describe('thermostat', function(){
     it('has a minimum temperature of 10', function (){
       expect(thermostat.minimum).toEqual(10);
     });
+    it('cannot be turned down past minimum', function(){
+      for (var i = 0; i < 11; i ++) {thermostat.down();}
+      expect(thermostat.state).toEqual(thermostat.minimum);
+    });
   });
 
   describe('thermostat has a maximum temperature', function(){
     it('has a maximum temp of 25', function (){
       expect(thermostat.maximum).toEqual(25);
+    });
+    it('cannot be turned up above max temp', function(){
+      for(var i = 0; i < 12; i ++) {thermostat.up();}
+      expect(thermostat.state).toEqual(thermostat.maximum);
     });
     it('if power save mode is off, maximum temp is 32', function(){
       thermostat.changeMode();
@@ -52,8 +60,14 @@ describe('thermostat', function(){
 
   describe('reset button changes state to 20', function(){
     it('resets the state to 20', function(){
+      thermostat.up();
       thermostat.reset();
       expect(thermostat.state).toEqual(20);
+    });
+    it('resets the color to yellow', function(){
+      for(var i = 0; i < 3; i++) {thermostat.down();}
+      thermostat.reset();
+      expect(thermostat.color).toBe('yellow')
     });
   });
 
@@ -66,6 +80,7 @@ describe('thermostat', function(){
       expect(thermostat.color).toBe('green');
     });
     it('its colour is red when temp is over 25', function(){
+      thermostat.changeMode();
       for(var i = 0; i < 6; i ++) {thermostat.up();}
       expect(thermostat.color).toBe('red');
     });
