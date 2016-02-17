@@ -57,4 +57,35 @@ describe('thermostat', function(){
     });
   });
 
+  describe('thermostat has a color', function(){
+    it('its colour is yellow by default', function(){
+      expect(thermostat.color).toBe('yellow');
+    });
+    it('its colour is green when temp is less than 18', function(){
+      thermostat.down();
+      thermostat.down();
+      thermostat.down();
+      expect(thermostat.color).toBe('green');
+    });
+    it('its colour is red when temp is over 25', function(){
+      thermostat.up();
+      thermostat.up();
+      thermostat.up();
+      thermostat.up();
+      thermostat.up();
+      thermostat.up();
+      expect(thermostat.color).toBe('red');
+    });
+  });
+    
+
 }); 
+
+
+
+
+
+
+
+
+
