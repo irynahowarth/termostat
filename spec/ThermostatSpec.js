@@ -17,6 +17,19 @@ describe('thermostat', function(){
     });
   });
 
+  describe('thermostat can decrease with down button', function(){
+    it('decreases the state', function(){
+      thermostat.down();
+      expect(thermostat.state).toEqual(19);
+    });
+  });
+
+  describe('thermostat has a minimum temperature of 10', function(){
+    it('has a minimum temperature of 10', function (){
+      expect(thermostat.minimum).toEqual(10);
+    });
+  });
+
 
 
 
