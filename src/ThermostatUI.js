@@ -1,6 +1,7 @@
 $(document).ready(function() {
   var therm = new Thermostat();
-  
+  var cityName = $("#select-city").val();
+
   function updateTemp() {
     $("#temp").text(therm.temperature);
     $(".display-color").css({'background-color': therm.displayColor});
@@ -10,7 +11,7 @@ $(document).ready(function() {
     $("#current-mode").text(therm.isModeOn ? "ON" : "OFF");
   }
   
-  getCityWeather();
+  getCityWeather(cityName);
   updateTemp();
   updateMode();
 
@@ -34,8 +35,13 @@ $(document).ready(function() {
     updateMode();
   });
 
-  function getCityWeather() {
-    $.get("http://api.openweathermap.org/data/2.5/find?q=London&units=metric&APPID=61410e5e87631c5e0d65b4ce6f13f575", function(response) {
+  $("#select-city").change(function() {
+    var cityName = $("#select-city").val();
+    getCityWeather(cityName);
+  });
+
+  function getCityWeather(city) {
+    $.get("http://api.openweathermap.org/data/2.5/find?q=" + city + "&units=metric&APPID=61410e5e87631c5e0d65b4ce6f13f575", function(response) {
       var cityName = response.list[0].name;
       var cityTemp = response.list[0].main.temp;
 
